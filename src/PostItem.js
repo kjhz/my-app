@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import like from "./favicon.ico"
 
 function PostItem(props) {
@@ -28,15 +28,15 @@ function PostItem(props) {
     
 }
 
-PostItem.PropTypes = {
-    post: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        author: PropTypes.string,
-        date: PropTypes.string,
-        vote: PropTypes.number,
+PostItem.propTypes = {
+    post: propTypes.shape({
+        id: propTypes.number,
+        title: propTypes.string,
+        author: propTypes.string,
+        date: propTypes.string,
+        vote: propTypes.number,
     }).isRequired,
-    onVote: PropTypes.func.isRequired
+    onVote: propTypes.func.isRequired
 }
 
 export  {PostItem};
