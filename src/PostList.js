@@ -8,7 +8,8 @@ class PostList extends Component {
             posts: []
         };
         this.timer = null;
-        this.handlerVote = this.handlerVote.bind(this);
+        this.handleVote = this.handleVote.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     componentDidMount() {
@@ -30,7 +31,7 @@ class PostList extends Component {
         }
     }
 
-    handlerVote(id) {
+    handleVote(id) {
         //根据id进行过滤，找到待修改 vote 属性的贴子，返回新的posts对象
         const posts = this.state.posts.map(item => {
             const newItem = item.id === id ? {...item, vote: ++item.vote} : item;
@@ -40,17 +41,27 @@ class PostList extends Component {
             posts
         });
     }
+
+    handleSave(post) {
+        //根据 post 的id，过滤出当前要更新的post
+        const posts = this.state.posts.map(item => {
+            const newItem = item.id === post.id ? post : item;
+            return newItem;
+        });
+        this.setState({ posts });
+    }
     
     render() {
         return (
-            <div>
-                贴子列表
+            <div className="container">
+               <h2>贴子列表</h2>
                 <ul>
                     { this.state.posts.map(item =>
                         <PostItem
                             key={item.id}
                             post={item}
                             onVote={this.handlerVote}
+                            onSave={this.handleSave}
                         />
                     )}
                 </ul>
